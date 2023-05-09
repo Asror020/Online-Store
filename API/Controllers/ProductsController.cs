@@ -6,6 +6,7 @@ using Core.Interfaces;
 using Core.Specifications;
 using AutoMapper;
 using API.Dtos;
+using API.Helpers;
 
 namespace API.Controllers
 {
@@ -25,13 +26,22 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductDto>>> GetProducts()
+        public async Task<ActionResult<List<ProductDto>>> GetProducts(
+            [FromQuery] ProductSpecParams productParams
+        )
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
 
             var products = await _productRepo.ListAsync(spec);
 
-            return products.Select(pr => _mapper.Map<ProductDto>(pr)).ToList();
+            var countSpec = new ProductWithFiltersForCountSpecification(productParams);
+
+            var totalItems = await _productRepo.CountAsync(countSpec);
+
+            var data = _mapper.Map<IReadOnlyList<ProductDto>>(products).ToList();
+
+            return Ok(new Pagination<ProductDto>(productParams.PageIndex,
+                productParams.PageSize, totalItems, data));
         }
 
         [HttpGet("{id}")]
