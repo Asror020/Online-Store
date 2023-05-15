@@ -33,12 +33,17 @@
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
                             "node_modules/font-awesome/css/font-awesome.min.css",
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": []
                     },
                     "configurations": {
                         "production": {
+                            "fileReplacements": [{
+                                "replace": "src/ervironments/environment.ts",
+                                "with": "src/ervironments/environment.prod.ts"
+                            }],
                             "budgets": [{
                                     "type": "initial",
                                     "maximumWarning": "500kb",

@@ -20,12 +20,7 @@ namespace API.Controllers
         [HttpGet("notfound")]
         public ActionResult GetNotFoundRequest()
         {
-            var thing = _context.Products.Find(42);
-            if(thing == null)
-            {
-                return NotFound(new ApiResponse(404));
-            }
-            return Ok();
+            return NotFound(new ApiResponse(404));
         }
 
         [HttpGet("servererror")]
