@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NgxSpinnerComponent, NgxSpinnerModule } from 'ngx-spinner';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -29,7 +30,8 @@ import { NgxSpinnerComponent, NgxSpinnerModule } from 'ngx-spinner';
       preventDuplicates: true
     }),
     BreadcrumbModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SharedModule
   ],
   exports: [
     NavBarComponent,
