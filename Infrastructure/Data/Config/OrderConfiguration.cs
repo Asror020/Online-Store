@@ -23,7 +23,7 @@ namespace Infrastructure.Data.Config
             builder.Property(s => s.OrderStatus).
                 HasConversion(
                     o => o.ToString(),
-                    o => (OrderStatus)Enum.Parse(typeof(OrderItem), o)
+                    o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o)
                 );
 
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
