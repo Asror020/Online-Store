@@ -477,3 +477,7 @@ $RECYCLE.BIN/
 *.lnk
 API/appsettings.json
 /API/identity.db-shm
+/API/store.db-wal
+/API/store.db-shm
+/API/store.db
+/API/identity.db-wal
